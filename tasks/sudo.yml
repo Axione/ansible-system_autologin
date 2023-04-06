@@ -1,0 +1,26 @@
+---
+- name: "Create a sudoers.d file to allow nopasswd on sudo commands"
+  ansible.builtin.template:
+    src: "sudo_users.j2"
+    dest: "{{ autologin_sudoersd_path }}/sudo_users"
+    mode: 0440
+  when:
+    - ansible_distribution != "FreeBSD"
+
+- name: CENTOS6 | Add sudo auth direcly on file
+  ansible.builtin.lineinfile:
+    dest: /etc/sudoers
+    regexp: '^{{ item.name }}'
+    insertafter: '^root'
+    line: '{{ item.name }}     ALL=(ALL) NOPASSWD:ALL'
+  when:
+    - ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+
+- name: FREEBSD | Add sudo auth direcly on file
+  ansible.builtin.lineinfile:
+    dest: /usr/local/etc/sudoers
+    regexp: '^{{ item.name }}'
+    insertafter: '^root'
+    line: '{{ item.name }}     ALL=(ALL) NOPASSWD:ALL'
+  when:
+    - ansible_distribution == "FreeBSD"

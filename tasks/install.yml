@@ -1,0 +1,14 @@
+---
+- include_tasks: auth.yml
+  with_items: "{{ autologin_users }}"
+  when:
+    - autologin_config_ssh|bool
+    - autologin_users is defined
+    - autologin_users | length > 0
+
+- include_tasks: sudo.yml
+  with_items: "{{ autologin_users }}"
+  when:
+    - autologin_config_sudo|bool
+    - autologin_users is defined
+    - autologin_users | length > 0
