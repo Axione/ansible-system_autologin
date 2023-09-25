@@ -32,6 +32,7 @@ See [variables](/defaults/main.yml) for more details.
 
 ## Examples
 
+
         ---
         - hosts: system_autologin
           become: true
