@@ -1,3 +1,5 @@
-{% for user in autologin_users %}                                                                                                                                                                                
-Defaults:{{ user.name }} !authenticate 
+{{ ansible_managed | comment }}
+
+{%- for user in autologin_users -%}
+Defaults:{{ user.name }} !authenticate
 {% endfor %}
