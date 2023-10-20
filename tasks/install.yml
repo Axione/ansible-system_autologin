@@ -6,9 +6,30 @@
     - autologin_users is defined
     - autologin_users | length > 0
 
-- include_tasks: sudo.yml
-  with_items: "{{ autologin_users }}"
+- name: "Create a sudoers.d file to allow nopasswd on sudo commands"
+  ansible.builtin.template:
+    src: "sudo_users.j2"
+    dest: "{{ autologin_sudoersd_path }}/sudo_users"
+    mode: 0440
   when:
+    - ansible_distribution != "FreeBSD"
+    - ansible_distribution != "CentOS" and ansible_distribution_major_version != "6"
+    - autologin_config_sudo|bool
+    - autologin_users is defined
+    - autologin_users | length > 0
+
+- name: "Freebsd sudo auth config"
+  include_tasks: setup_freebsd.yml
+  when:
+    - ansible_distribution == "FreeBSD"
+    - autologin_config_sudo|bool
+    - autologin_users is defined
+    - autologin_users | length > 0
+
+- name: "Centos6 sudo auth config"
+  include_tasks: setup_centos6.yml
+  when:
+    - ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
     - autologin_config_sudo|bool
     - autologin_users is defined
     - autologin_users | length > 0

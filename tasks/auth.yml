@@ -1,20 +1,20 @@
 ---
-- name: "Check for user home"
+- name: "Check for user home - {{ item.name }}"
   ansible.builtin.stat:
     path: '{{ autologin_home_path }}/{{ item.name }}'
   changed_when: false
   register: home
 
-- name: "Create home directory"
+- name: "Create home directory - {{ item.name }}"
   ansible.builtin.file:
     path: "{{ autologin_home_path }}/{{ item.name }}"
     state: directory
-    mode: 0755
+    mode: 0750
     owner: "{{ item.name }}"
     group: "{{ autologin_group }}"
   when: not home.stat.exists
 
-- name: "Set authorized key on server"
+- name: "Set authorized key on server - {{ item.name }}"
   ansible.builtin.authorized_key:
     user: "{{ item.name }}"
     state: present
