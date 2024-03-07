@@ -14,6 +14,15 @@
     group: "{{ autologin_group }}"
   when: not home.stat.exists
 
+- name: Copy skeleton into home
+  ansible.builtin.copy:
+    src: /etc/skel/
+    dest: "{{ autologin_home_path }}/{{ item.name }}"
+    owner: "{{ item.name }}"
+    group: "{{ autologin_group }}"
+    mode: 0644
+  when: not home.stat.exists
+
 - name: "Set authorized key on server - {{ item.name }}"
   ansible.builtin.authorized_key:
     user: "{{ item.name }}"
