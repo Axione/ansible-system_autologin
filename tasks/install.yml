@@ -1,5 +1,6 @@
 ---
-- include_tasks: auth.yml
+- name: "Create auth"
+  ansible.builtin.include_tasks: auth.yml
   with_items: "{{ autologin_users }}"
   when:
     - autologin_config_ssh|bool
@@ -19,7 +20,7 @@
     - autologin_users | length > 0
 
 - name: "Freebsd sudo auth config"
-  include_tasks: setup_freebsd.yml
+  ansible.builtin.include_tasks: setup_freebsd.yml
   when:
     - ansible_distribution == "FreeBSD"
     - autologin_config_sudo|bool
@@ -27,7 +28,7 @@
     - autologin_users | length > 0
 
 - name: "Centos6 sudo auth config"
-  include_tasks: setup_centos6.yml
+  ansible.builtin.include_tasks: setup_centos6.yml
   when:
     - ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
     - autologin_config_sudo|bool
