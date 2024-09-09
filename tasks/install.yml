@@ -11,7 +11,7 @@
   ansible.builtin.template:
     src: "sudo_users.j2"
     dest: "{{ autologin_sudoersd_path }}/sudo_users"
-    mode: 0440
+    mode: '0440'
   when:
     - ansible_distribution != "FreeBSD"
     - ansible_distribution != "CentOS" and ansible_distribution_major_version != "6"
