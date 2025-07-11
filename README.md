@@ -22,6 +22,7 @@
 ## Description
 
 Install user ssh key and sudo nopassword
+
 ## Requirements
 
 none
@@ -43,7 +44,6 @@ See [variables](/defaults/main.yml) for more details.
           vars:
             autologin_users:
              - {name: username, key: "ssh-ed25519 AAAAC3NzaC1asdad8sd7as0asfasf5as4fa7sfa0sf0-af8"}
-
 
 
 ## License
