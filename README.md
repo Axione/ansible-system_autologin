@@ -3,8 +3,7 @@
 [![Galaxy Role](https://img.shields.io/badge/galaxy-system_autologin-purple?style=flat)](https://galaxy.ansible.com/lotusnoir/system_autologin)
 [![Version](https://img.shields.io/github/release/lotusnoir/ansible-system_autologin.svg)](https://github.com/lotusnoir/ansible-system_autologin/releases/latest)
 [![GitHub repo size](https://img.shields.io/github/repo-size/lotusnoir/ansible-system_autologin?color=orange&style=flat)](https://galaxy.ansible.com/lotusnoir/system_autologin)
-[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lotusnoir/system_autologin)
-[![Ansible Quality Score](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/lotusnoir/system_autologin)
+[![downloads](https://img.shields.io/ansible/role/d/lotusnoir/system_autologin)](https://galaxy.ansible.com/lotusnoir/system_autologin)
 [![License](https://img.shields.io/badge/license-Apache--2.0-brightgreen?style=flat)](https://opensource.org/licenses/Apache-2.0)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
